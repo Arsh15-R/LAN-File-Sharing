@@ -91,10 +91,15 @@ public class FileServer {
             // Reset any stale ONLINE statuses from previous server runs
             userDAO.resetAllUserStatuses();
         } else {
-            log("WARNING: Could not connect to MySQL. Verify resources/db.properties and MySQL service.");
+            log("NOTICE: MySQL not detected. Built-in storage active (Arsh & Daksh ready).");
         }
 
-        serverSocket = new ServerSocket(port);
+        try {
+            serverSocket = new ServerSocket(port);
+        } catch (java.net.BindException e) {
+            log("ERROR: Port " + port + " is already in use by another running server instance!");
+            throw new IOException("Port " + port + " is already in use. Close any previous server window or task first.", e);
+        }
         running = true;
         threadPool = Executors.newCachedThreadPool();
 

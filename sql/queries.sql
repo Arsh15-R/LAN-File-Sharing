@@ -6,18 +6,14 @@
 USE fileshare_db;
 
 -- ============================================================================
--- 1. ADD ADDITIONAL TEST USERS
--- Primary accounts: 'Arsh' & 'Daksh' (Password: '123456789')
+-- 1. SEED / RESET SAMPLE USERS
+-- Accounts: 'Arsh' & 'Daksh' (Password: '123456789')
 -- SHA-256 hash for '123456789': 15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225
--- SHA-256 hash for 'password123': ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f
 -- ============================================================================
 INSERT INTO users (username, password_hash, full_name, email, status)
 VALUES 
 ('Arsh', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Arsh Rana', 'arsh@lanfileshare.com', 'OFFLINE'),
-('Daksh', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Daksh', 'daksh@lanfileshare.com', 'OFFLINE'),
-('charlie', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'Charlie Brown', 'charlie@lanfileshare.com', 'OFFLINE'),
-('diana', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'Diana Prince', 'diana@lanfileshare.com', 'OFFLINE'),
-('edward', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'Edward Norton', 'edward@lanfileshare.com', 'OFFLINE')
+('Daksh', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Daksh', 'daksh@lanfileshare.com', 'OFFLINE')
 ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash), full_name = VALUES(full_name);
 
 -- ============================================================================
@@ -25,12 +21,8 @@ ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash), full_name = VALUE
 -- ============================================================================
 INSERT INTO file_transfers (transfer_uuid, sender_username, receiver_username, file_name, file_size, status, transferred_bytes, created_at, completed_at)
 VALUES
-('uuid-tx-001', 'alice', 'bob', 'Project_Specification.pdf', 2450000, 'Completed', 2450000, NOW() - INTERVAL 120 MINUTE, NOW() - INTERVAL 118 MINUTE),
-('uuid-tx-002', 'bob', 'alice', 'Architecture_Diagram.png', 1120000, 'Completed', 1120000, NOW() - INTERVAL 60 MINUTE, NOW() - INTERVAL 59 MINUTE),
-('uuid-tx-003', 'alice', 'charlie', 'Dataset_Archive_2026.zip', 48500000, 'Completed', 48500000, NOW() - INTERVAL 45 MINUTE, NOW() - INTERVAL 40 MINUTE),
-('uuid-tx-004', 'charlie', 'diana', 'Client_Presentation.pptx', 8900000, 'Completed', 8900000, NOW() - INTERVAL 30 MINUTE, NOW() - INTERVAL 28 MINUTE),
-('uuid-tx-005', 'diana', 'alice', 'Source_Code_Backup.tar.gz', 15200000, 'Failed', 4500000, NOW() - INTERVAL 15 MINUTE, NOW() - INTERVAL 14 MINUTE),
-('uuid-tx-006', 'bob', 'edward', 'Meeting_Recording.mp4', 68000000, 'Completed', 68000000, NOW() - INTERVAL 10 MINUTE, NOW() - INTERVAL 8 MINUTE)
+('uuid-tx-001', 'Arsh', 'Daksh', 'Project_Specification.pdf', 2450000, 'Completed', 2450000, NOW() - INTERVAL 120 MINUTE, NOW() - INTERVAL 118 MINUTE),
+('uuid-tx-002', 'Daksh', 'Arsh', 'Architecture_Diagram.png', 1120000, 'Completed', 1120000, NOW() - INTERVAL 60 MINUTE, NOW() - INTERVAL 59 MINUTE)
 ON DUPLICATE KEY UPDATE status = VALUES(status);
 
 -- ============================================================================
@@ -70,7 +62,7 @@ SELECT
 FROM file_transfers
 ORDER BY created_at DESC;
 
--- Query 4.2: Transfers involving a specific user (e.g., 'alice') as sender or receiver
+-- Query 4.2: Transfers involving a specific user (e.g., 'Arsh') as sender or receiver
 SELECT 
     transfer_uuid,
     sender_username,
@@ -79,7 +71,7 @@ SELECT
     status,
     created_at
 FROM file_transfers
-WHERE sender_username = 'alice' OR receiver_username = 'alice'
+WHERE sender_username = 'Arsh' OR receiver_username = 'Arsh'
 ORDER BY created_at DESC;
 
 -- Query 4.3: Summary count by transfer status (Completed, Failed, Pending)

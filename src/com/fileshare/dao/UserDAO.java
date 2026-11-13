@@ -36,15 +36,6 @@ public class UserDAO {
         inMemoryUsers.put("daksh", daksh);
         inMemoryPasswords.put("daksh", sampleHash);
 
-        // Legacy sample accounts: alice and bob (password: password123)
-        String hash = PasswordHasher.hash("password123");
-        UserBean alice = new UserBean(3, "alice", "Alice Johnson", "alice@lanfileshare.com", "OFFLINE", new Timestamp(System.currentTimeMillis()));
-        UserBean bob = new UserBean(4, "bob", "Bob Smith", "bob@lanfileshare.com", "OFFLINE", new Timestamp(System.currentTimeMillis()));
-        inMemoryUsers.put("alice", alice);
-        inMemoryPasswords.put("alice", hash);
-        inMemoryUsers.put("bob", bob);
-        inMemoryPasswords.put("bob", hash);
-
         // Load any previously registered users saved to disk
         loadFallbackFromDisk();
     }

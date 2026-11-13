@@ -39,13 +39,10 @@ CREATE TABLE IF NOT EXISTS file_transfers (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- 4. Add initial sample users
--- Primary accounts: 'Arsh' & 'Daksh' (Password: '123456789')
+-- Accounts: 'Arsh' & 'Daksh' (Password: '123456789')
 -- SHA-256 for '123456789': 15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225
--- SHA-256 for 'password123': ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f
 INSERT INTO users (username, password_hash, full_name, email, status)
 VALUES 
 ('Arsh', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Arsh Rana', 'arsh@lanfileshare.com', 'OFFLINE'),
-('Daksh', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Daksh', 'daksh@lanfileshare.com', 'OFFLINE'),
-('alice', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'Alice Johnson', 'alice@lanfileshare.com', 'OFFLINE'),
-('bob', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'Bob Smith', 'bob@lanfileshare.com', 'OFFLINE')
+('Daksh', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Daksh', 'daksh@lanfileshare.com', 'OFFLINE')
 ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash), full_name = VALUES(full_name);

@@ -253,10 +253,8 @@ run-client.bat
 | :--- | :--- | :--- | :--- |
 | **`Arsh`** | **`123456789`** | Arsh Rana | Sample User 1 / Team Lead |
 | **`Daksh`** | **`123456789`** | Daksh | Sample User 2 / Collaborator |
-| `alice` | `password123` | Alice Johnson | Legacy Test Account |
-| `bob` | `password123` | Bob Smith | Legacy Test Account |
 
-*(Or click **Create New Account** in the client window to register a new user).*
+*(Or click **Create New Account** in the client window to register any new user).*
 
 ---
 

@@ -6,15 +6,19 @@
 USE fileshare_db;
 
 -- ============================================================================
--- 1. ADD ADDITIONAL TEST USERS (Password for all: 'password123')
--- SHA-256 hash: ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f
+-- 1. ADD ADDITIONAL TEST USERS
+-- Primary accounts: 'Arsh' & 'Daksh' (Password: '123456789')
+-- SHA-256 hash for '123456789': 15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225
+-- SHA-256 hash for 'password123': ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f
 -- ============================================================================
 INSERT INTO users (username, password_hash, full_name, email, status)
 VALUES 
+('Arsh', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Arsh Rana', 'arsh@lanfileshare.com', 'OFFLINE'),
+('Daksh', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Daksh', 'daksh@lanfileshare.com', 'OFFLINE'),
 ('charlie', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'Charlie Brown', 'charlie@lanfileshare.com', 'OFFLINE'),
 ('diana', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'Diana Prince', 'diana@lanfileshare.com', 'OFFLINE'),
 ('edward', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'Edward Norton', 'edward@lanfileshare.com', 'OFFLINE')
-ON DUPLICATE KEY UPDATE full_name = VALUES(full_name);
+ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash), full_name = VALUES(full_name);
 
 -- ============================================================================
 -- 2. ADD SAMPLE FILE TRANSFER HISTORY

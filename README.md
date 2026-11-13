@@ -248,11 +248,13 @@ run-client.bat
 ./run-client.sh
 ```
 
-#### Pre-seeded Test Accounts:
-| Username | Password | Full Name |
-| :--- | :--- | :--- |
-| `alice` | `password123` | Alice Johnson |
-| `bob` | `password123` | Bob Smith |
+#### Pre-seeded Sample Accounts:
+| Username | Password | Full Name | Role |
+| :--- | :--- | :--- | :--- |
+| **`Arsh`** | **`123456789`** | Arsh Rana | Sample User 1 / Team Lead |
+| **`Daksh`** | **`123456789`** | Daksh | Sample User 2 / Collaborator |
+| `alice` | `password123` | Alice Johnson | Legacy Test Account |
+| `bob` | `password123` | Bob Smith | Legacy Test Account |
 
 *(Or click **Create New Account** in the client window to register a new user).*
 

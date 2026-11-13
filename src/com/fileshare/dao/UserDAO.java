@@ -27,10 +27,19 @@ public class UserDAO {
     private static final java.io.File PASSWORDS_FILE = new java.io.File(DATA_DIR, "passwords_store.ser");
 
     static {
-        // Seed test accounts: alice and bob (password: password123)
+        // Primary sample accounts: Arsh and Daksh (password: 123456789)
+        String sampleHash = PasswordHasher.hash("123456789");
+        UserBean arsh = new UserBean(1, "Arsh", "Arsh Rana", "arsh@lanfileshare.com", "OFFLINE", new Timestamp(System.currentTimeMillis()));
+        UserBean daksh = new UserBean(2, "Daksh", "Daksh", "daksh@lanfileshare.com", "OFFLINE", new Timestamp(System.currentTimeMillis()));
+        inMemoryUsers.put("arsh", arsh);
+        inMemoryPasswords.put("arsh", sampleHash);
+        inMemoryUsers.put("daksh", daksh);
+        inMemoryPasswords.put("daksh", sampleHash);
+
+        // Legacy sample accounts: alice and bob (password: password123)
         String hash = PasswordHasher.hash("password123");
-        UserBean alice = new UserBean(1, "alice", "Alice Johnson", "alice@lanfileshare.com", "OFFLINE", new Timestamp(System.currentTimeMillis()));
-        UserBean bob = new UserBean(2, "bob", "Bob Smith", "bob@lanfileshare.com", "OFFLINE", new Timestamp(System.currentTimeMillis()));
+        UserBean alice = new UserBean(3, "alice", "Alice Johnson", "alice@lanfileshare.com", "OFFLINE", new Timestamp(System.currentTimeMillis()));
+        UserBean bob = new UserBean(4, "bob", "Bob Smith", "bob@lanfileshare.com", "OFFLINE", new Timestamp(System.currentTimeMillis()));
         inMemoryUsers.put("alice", alice);
         inMemoryPasswords.put("alice", hash);
         inMemoryUsers.put("bob", bob);

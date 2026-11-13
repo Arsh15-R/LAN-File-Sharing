@@ -19,7 +19,7 @@ This project was developed by:
 | Name | Role / Contribution |
 | :--- | :--- |
 | **Arsh Rana** | Project Lead, Network Architecture, Core Protocol & Sockets |
-| **Daksh** | Database Design, DAO Layer, MySQL Schema & JDBC Integration |
+| **Daksh Walia** | Database Design, DAO Layer, MySQL Schema & JDBC Integration |
 | **Adhyma Singh** | GUI Development, Swing Components, AWT Event Handlers & UX |
 | **Aarav Sharma** | Asynchronous Streaming (SwingWorker), Testing, Error Handling & Docs |
 
@@ -252,7 +252,7 @@ run-client.bat
 | Username | Password | Full Name | Role |
 | :--- | :--- | :--- | :--- |
 | **`Arsh`** | **`123456789`** | Arsh Rana | Sample User 1 / Team Lead |
-| **`Daksh`** | **`123456789`** | Daksh | Sample User 2 / Collaborator |
+| **`Daksh`** | **`123456789`** | Daksh Walia | Sample User 2 / Collaborator |
 
 *(Or click **Create New Account** in the client window to register any new user).*
 

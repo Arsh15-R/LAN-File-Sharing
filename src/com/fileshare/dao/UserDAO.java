@@ -30,7 +30,7 @@ public class UserDAO {
         // Primary sample accounts: Arsh and Daksh (password: 123456789)
         String sampleHash = PasswordHasher.hash("123456789");
         UserBean arsh = new UserBean(1, "Arsh", "Arsh Rana", "arsh@lanfileshare.com", "OFFLINE", new Timestamp(System.currentTimeMillis()));
-        UserBean daksh = new UserBean(2, "Daksh", "Daksh", "daksh@lanfileshare.com", "OFFLINE", new Timestamp(System.currentTimeMillis()));
+        UserBean daksh = new UserBean(2, "Daksh", "Daksh Walia", "daksh@lanfileshare.com", "OFFLINE", new Timestamp(System.currentTimeMillis()));
         inMemoryUsers.put("arsh", arsh);
         inMemoryPasswords.put("arsh", sampleHash);
         inMemoryUsers.put("daksh", daksh);

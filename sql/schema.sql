@@ -44,5 +44,5 @@ CREATE TABLE IF NOT EXISTS file_transfers (
 INSERT INTO users (username, password_hash, full_name, email, status)
 VALUES 
 ('Arsh', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Arsh Rana', 'arsh@lanfileshare.com', 'OFFLINE'),
-('Daksh', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Daksh', 'daksh@lanfileshare.com', 'OFFLINE')
+('Daksh', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', 'Daksh Walia', 'daksh@lanfileshare.com', 'OFFLINE')
 ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash), full_name = VALUES(full_name);

@@ -1,0 +1,3 @@
+@echo off
+echo Launching LAN File Sharing Client...
+start "LAN FileShare Client" java -cp "bin;lib\mysql-connector-j-8.3.0.jar;resources" com.fileshare.client.LoginFrame

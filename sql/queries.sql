@@ -1,0 +1,108 @@
+-- ============================================================================
+-- LAN File Sharing Application - Useful SQL Queries & Sample Operations
+-- Database: fileshare_db
+-- ============================================================================
+
+USE fileshare_db;
+
+-- ============================================================================
+-- 1. ADD ADDITIONAL TEST USERS (Password for all: 'password123')
+-- SHA-256 hash: ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f
+-- ============================================================================
+INSERT INTO users (username, password_hash, full_name, email, status)
+VALUES 
+('charlie', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'Charlie Brown', 'charlie@lanfileshare.com', 'OFFLINE'),
+('diana', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'Diana Prince', 'diana@lanfileshare.com', 'OFFLINE'),
+('edward', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'Edward Norton', 'edward@lanfileshare.com', 'OFFLINE')
+ON DUPLICATE KEY UPDATE full_name = VALUES(full_name);
+
+-- ============================================================================
+-- 2. ADD SAMPLE FILE TRANSFER HISTORY
+-- ============================================================================
+INSERT INTO file_transfers (transfer_uuid, sender_username, receiver_username, file_name, file_size, status, transferred_bytes, created_at, completed_at)
+VALUES
+('uuid-tx-001', 'alice', 'bob', 'Project_Specification.pdf', 2450000, 'Completed', 2450000, NOW() - INTERVAL 120 MINUTE, NOW() - INTERVAL 118 MINUTE),
+('uuid-tx-002', 'bob', 'alice', 'Architecture_Diagram.png', 1120000, 'Completed', 1120000, NOW() - INTERVAL 60 MINUTE, NOW() - INTERVAL 59 MINUTE),
+('uuid-tx-003', 'alice', 'charlie', 'Dataset_Archive_2026.zip', 48500000, 'Completed', 48500000, NOW() - INTERVAL 45 MINUTE, NOW() - INTERVAL 40 MINUTE),
+('uuid-tx-004', 'charlie', 'diana', 'Client_Presentation.pptx', 8900000, 'Completed', 8900000, NOW() - INTERVAL 30 MINUTE, NOW() - INTERVAL 28 MINUTE),
+('uuid-tx-005', 'diana', 'alice', 'Source_Code_Backup.tar.gz', 15200000, 'Failed', 4500000, NOW() - INTERVAL 15 MINUTE, NOW() - INTERVAL 14 MINUTE),
+('uuid-tx-006', 'bob', 'edward', 'Meeting_Recording.mp4', 68000000, 'Completed', 68000000, NOW() - INTERVAL 10 MINUTE, NOW() - INTERVAL 8 MINUTE)
+ON DUPLICATE KEY UPDATE status = VALUES(status);
+
+-- ============================================================================
+-- 3. SELECT QUERIES - USER MANAGEMENT
+-- ============================================================================
+
+-- Query 3.1: List all registered users
+SELECT id, username, full_name, email, status, created_at 
+FROM users 
+ORDER BY id ASC;
+
+-- Query 3.2: View online users only
+SELECT id, username, full_name, email 
+FROM users 
+WHERE status = 'ONLINE';
+
+-- Query 3.3: Total registered users count
+SELECT COUNT(*) AS total_users 
+FROM users;
+
+-- ============================================================================
+-- 4. SELECT QUERIES - FILE TRANSFERS & AUDIT LOGS
+-- ============================================================================
+
+-- Query 4.1: View all file transfer history (most recent first)
+SELECT 
+    id,
+    transfer_uuid,
+    sender_username AS sender,
+    receiver_username AS receiver,
+    file_name,
+    ROUND(file_size / (1024 * 1024), 2) AS file_size_mb,
+    status,
+    ROUND(transferred_bytes / (1024 * 1024), 2) AS transferred_mb,
+    created_at,
+    completed_at
+FROM file_transfers
+ORDER BY created_at DESC;
+
+-- Query 4.2: Transfers involving a specific user (e.g., 'alice') as sender or receiver
+SELECT 
+    transfer_uuid,
+    sender_username,
+    receiver_username,
+    file_name,
+    status,
+    created_at
+FROM file_transfers
+WHERE sender_username = 'alice' OR receiver_username = 'alice'
+ORDER BY created_at DESC;
+
+-- Query 4.3: Summary count by transfer status (Completed, Failed, Pending)
+SELECT 
+    status, 
+    COUNT(*) AS total_transfers,
+    ROUND(SUM(file_size) / (1024 * 1024), 2) AS total_volume_mb
+FROM file_transfers
+GROUP BY status;
+
+-- Query 4.4: Top senders by volume transferred
+SELECT 
+    sender_username AS user,
+    COUNT(*) AS files_sent,
+    ROUND(SUM(transferred_bytes) / (1024 * 1024), 2) AS total_sent_mb
+FROM file_transfers
+WHERE status = 'Completed'
+GROUP BY sender_username
+ORDER BY total_sent_mb DESC;
+
+-- Query 4.5: Top receivers by volume received
+SELECT 
+    receiver_username AS user,
+    COUNT(*) AS files_received,
+    ROUND(SUM(transferred_bytes) / (1024 * 1024), 2) AS total_received_mb
+FROM file_transfers
+WHERE status = 'Completed'
+GROUP BY receiver_username
+ORDER BY total_received_mb DESC;
+

@@ -1,0 +1,3 @@
+@echo off
+echo Starting LAN File Sharing Server GUI...
+start "LAN FileShare Server" java -cp "bin;lib\mysql-connector-j-8.3.0.jar;resources" com.fileshare.server.ServerFrame --autostart

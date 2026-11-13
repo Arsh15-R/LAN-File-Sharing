@@ -1,0 +1,31 @@
+# Compiled class files
+/bin/
+*.class
+
+# Runtime downloads directory (transferred files)
+/downloads/*
+!/downloads/.gitignore
+!/downloads/.gitkeep
+
+# Local fallback data store & cache
+/data/
+*.ser
+*.log
+
+# Build archives & deployment packages
+*.zip
+/client-package/
+/temp_user_zip/
+
+# IDE configurations
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# OS specific files
+Thumbs.db
+Desktop.ini
+.DS_Store

@@ -120,7 +120,7 @@ public class DashboardFrame extends JFrame implements NetworkEventListener {
         JPanel userPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
         JLabel userIcon = new JLabel("👤");
         userIcon.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 22));
-        userWelcomeLabel = new JLabel("Logged in: " + currentUser.getFullName() + " (@" + currentUser.getUsername() + ")");
+        userWelcomeLabel = new JLabel("Logged in: " + currentUser.getUsername());
         userWelcomeLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
         userWelcomeLabel.setForeground(new Color(25, 118, 210));
         userPanel.add(userIcon);

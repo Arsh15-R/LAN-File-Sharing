@@ -145,6 +145,9 @@ public class UserBean implements Serializable {
 
     @Override
     public String toString() {
-        return username + (fullName != null && !fullName.isEmpty() ? " (" + fullName + ")" : "");
+        if (fullName == null || fullName.trim().isEmpty() || fullName.equalsIgnoreCase(username)) {
+            return username;
+        }
+        return username + " (" + fullName + ")";
     }
 }

@@ -21,7 +21,7 @@ This project was developed by:
 | **Arsh Rana** | Project Lead, Network Architecture, Core Protocol & Sockets |
 | **Daksh** | Database Design, DAO Layer, MySQL Schema & JDBC Integration |
 | **Adhyma Singh** | GUI Development, Swing Components, AWT Event Handlers & UX |
-| **Arav Sharma** | Asynchronous Streaming (SwingWorker), Testing, Error Handling & Docs |
+| **Aarav Sharma** | Asynchronous Streaming (SwingWorker), Testing, Error Handling & Docs |
 
 ---
 

@@ -35,7 +35,7 @@ public class LoginFrame extends JFrame implements NetworkEventListener {
 
     public LoginFrame() {
         setTitle(Constants.APP_NAME + " - Login");
-        setSize(420, 460);
+        setSize(420, 430);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,18 +91,9 @@ public class LoginFrame extends JFrame implements NetworkEventListener {
         portField = new JTextField(String.valueOf(Constants.DEFAULT_PORT), 14);
         formPanel.add(portField, gbc);
 
-        // Hint for other laptops
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        JLabel hostHint = new JLabel("<html><i>💡 For other laptops: enter Host PC's Wi-Fi IP (e.g. 10.6.x.x)</i></html>");
-        hostHint.setFont(new Font("Segoe UI", Font.PLAIN, 11));
-        hostHint.setForeground(new Color(100, 116, 139));
-        formPanel.add(hostHint, gbc);
-
         // Separator
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 2;
         gbc.gridwidth = 2;
         JSeparator sep = new JSeparator();
         sep.setBorder(new EmptyBorder(6, 0, 6, 0));
@@ -110,7 +101,7 @@ public class LoginFrame extends JFrame implements NetworkEventListener {
 
         // Credentials
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         gbc.gridwidth = 1;
         formPanel.add(new JLabel("Username:"), gbc);
 
@@ -119,7 +110,7 @@ public class LoginFrame extends JFrame implements NetworkEventListener {
         formPanel.add(usernameField, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 4;
         formPanel.add(new JLabel("Password:"), gbc);
 
         gbc.gridx = 1;
